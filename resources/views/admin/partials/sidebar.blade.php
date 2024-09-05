@@ -56,9 +56,9 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ route('sitesettings.index') }}">
+                    <a href="{{ url('/laratrust') }}">
                         <i class="bx bx-right-arrow-alt"></i>
-                        Site Setting
+                        Role Management
                     </a>
                 </li>
 

@@ -17,7 +17,7 @@
                 </li>
                 <li class="breadcrumb-item"><a href="{{route('post.index')}}">Posts View</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('post.edit', $blog->id) }}">Edit Posts</a>
+                <li class="breadcrumb-item"><a href="{{ route('post.edit', $data->id) }}">Edit Posts</a>
                 </li>
             </ol>
         </div>

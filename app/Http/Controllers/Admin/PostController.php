@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
+use App\View\Components\ActionButtons;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -14,9 +17,32 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::get();
-        return view('admin.post.index', compact('data'));
+        if (request()->ajax()) {
+            $data = Post::select(['id', 'name', 'photo','desc']);
+            return Datatables::of($data)
+                ->addColumn('photo', function ($row) {
+                    $photoUrl = asset( $row->photo);
+                    return '<img src="'.$photoUrl.'" alt="Photo" width="100" height="100" class="img-thumbnail">';
+                })
+                ->addColumn('desc', function ($row) {
+                    return '<span title="'.$row->desc.'">'.Str::limit($row->desc, 15).'</span>';
+                })
+
+                ->addColumn('action', function ($row) {
+                    return view('components.action-buttons', [
+                        'id' => $row->id,
+                        'editRoute' => 'post.edit',
+                        'deleteRoute' => 'post.destroy',
+                    ])->render();
+                })
+                ->rawColumns(['photo','desc', 'action'])
+                ->make(true);
+        }
+
+        return view('admin.post.index');
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +64,6 @@ class PostController extends Controller
                 'photo' => 'mimes:png,jpg,jpeg,webp',
                 'desc' => 'required|string',
             ]);
-
 
             $post = Post::create([
                 'name' => $request->name,
@@ -90,7 +115,6 @@ class PostController extends Controller
         try {
             $post = Post::find($id);
             $request->validate([
-                'created_by' => 'required',
                 'name' => 'required|string|max:255',
                 'photo' => 'mimes:png,jpg,jpeg,webp',
                 'desc' => 'required|string',
@@ -99,7 +123,6 @@ class PostController extends Controller
 
 
             $post->update([
-                'created_by' => $request->created_by,
                 'name' => $request->name,
                 'desc' => $request->desc,
             ]);
@@ -121,7 +144,7 @@ class PostController extends Controller
 
             flash()->success('Post Updated successfully');
 
-            return redirect()->route('admin.blogs')->with('success', 'Blog updated successfully.');
+            return redirect()->route('post.index')->with('success', 'Blog updated successfully.');
         } catch (\Exception $e) {
 
             flash()->error('Error updating blog: ' . $e->getMessage());
