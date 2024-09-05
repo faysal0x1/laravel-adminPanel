@@ -1,0 +1,34 @@
+.slideshow-container {
+    max-width: 1000px;
+    height: 500px;
+    position: relative;
+    margin: auto;
+    background-size: cover;
+    background-position: top;
+    transition: background-image 1.5s ease-in-out;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.banner-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #001;
+    opacity: 0.3;
+    /* z-index: -1; */
+}
+
+.caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}

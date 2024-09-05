@@ -1,0 +1,13 @@
+<script src="{{asset('medcare/js/jquery-2.2.4.min.js')}}"></script>
+<script src="{{asset('medcare/js/popper.js')}}"></script>
+<script src="{{asset('medcare/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('medcare/js/stellar.js')}}"></script>
+<script src="{{asset('medcare/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('medcare/js/jquery.ajaxchimp.min.js')}}"></script>
+<script src="{{asset('medcare/js/waypoints.min.js')}}"></script>
+<script src="{{asset('medcare/js/mail-script.js')}}"></script>
+<script src="{{asset('medcare/js/contact.js')}}"></script>
+<script src="{{asset('medcare/js/jquery.form.js')}}"></script>
+<script src="{{asset('medcare/js/jquery.validate.min.js')}}"></script>
+<script src="{{asset('medcare/js/mail-script.js')}}"></script>
+<script src="{{asset('medcare/js/theme.js')}}"></script>

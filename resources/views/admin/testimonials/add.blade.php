@@ -1,0 +1,88 @@
+@extends('layouts.admin')
+
+@section('title', 'Add new Testimonial')
+
+@section('content')
+
+<!-- Header Starts -->
+<div class="row">
+    <div class="col-sm-12 p-0">
+        <div class="main-header" style="margin-top: 0px;">
+            <h4>Table</h4>
+            <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
+                <li class="breadcrumb-item">
+                    <a href="index.html">
+                        <i class="icofont icofont-home"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item"><a href="{{route('admin.testimonials')}}">Testimonials View</a>
+                </li>
+                <li class="breadcrumb-item"><a href="#">Add New Testimonial</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- Header end -->
+
+<!-- Tables start -->
+<!-- Row start -->
+<div class="row">
+    <div class="col-sm-12">
+
+
+    <div class="card" style="box-shadow: 0 0 5px black; border-radius:10px; margin: 0 20px 0 20px;">
+        <div class="card-header">
+            <h5 class="card-header-text">Add New Testimonial</h5>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+            </div>
+            <div class="card-block">
+                <form action="/admin/testimonials" method="POST">
+                    @csrf
+                    @method('POST')
+                    <div class="form-group row">
+                        <label for="name" class="col-xs-2 col-form-label form-control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-xs-2 col-form-label form-control-label">Rating</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="rating" name="rating" min="0" max="5"
+                                placeholder="Rating">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-xs-2 col-form-label form-control-label">Position</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="position" name="position"
+                                placeholder="Position">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="desc" class="col-xs-2 col-form-label form-control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="desc" name="desc" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
