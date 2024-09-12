@@ -20,28 +20,22 @@ class RoleSeeder extends Seeder
                 'display_name' => 'Admin',
             ],
             [
-                'name' => 'doctor',
-                'display_name' => 'Doctor',
+                'name' => 'manager',
+                'display_name' => 'Manager',
             ],
             [
-                'name' => 'nurse',
-                'display_name' => 'Nurse',
-            ],
-            [
+                'name' => 'incharge',
+                'display_name' => 'Incharge',
+            ], [
                 'name' => 'staff',
                 'display_name' => 'Staff',
+            ], [
+                'name' => 'captain',
+                'display_name' => 'Captain',
             ],
             [
-                'name' => 'patient',
-                'display_name' => 'Patient',
-            ],
-            [
-                'name' => 'receptionist',
-                'display_name' => 'Receptionist',
-            ],
-            [
-                'name' => 'accountant',
-                'display_name' => 'Accountant',
+                'name' => 'user',
+                'display_name' => 'User',
             ],
         );
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Throwable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,28 @@ class AdminController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function toggleStatus($model, $id)
+    {
 
+        try {
+            $model = 'App\\Models\\' . ucfirst($model);
 
+            if (!class_exists($model)) {
+                return response()->json(['message' => 'Model not found.'], 404);
+            }
+            $item = $model::find($id);
+
+            if (!$item) {
+                return response()->json(['message' => 'Item not found.'], 404);
+            }
+
+            $item->status = $item->status === 1 ? 0 : 1;
+            $item->save();
+
+            return response()->json(['message' => 'Status updated successfully.', 'status' => $item->status]);
+        } catch (Throwable $th) {
+
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
+    }
 }

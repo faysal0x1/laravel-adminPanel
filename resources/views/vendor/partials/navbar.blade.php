@@ -7,7 +7,8 @@
             <div class="flex items-center">
                 <div class="">
                     <div class="flex items-baseline">
-                        <a href="{{ config('laratrust.panel.go_back_route') }}" class="nav-button">← Go Back</a>
+                        <a href="{{ url()->previous() }}" class="nav-button">← Go Back</a>
+
                         <a href="{{ route('laratrust.roles-assignment.index') }}"
                             class="ml-4 {{ request()->is('*roles-assignment*') ? 'nav-button-active' : 'nav-button' }}">
                             Roles & Permissions Assignment

@@ -1,0 +1,79 @@
+.progress-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .progress-list {
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+  }
+
+  .progress-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 30px;  /* Adjusted to account for larger circles */
+    width: 2px;
+    height: calc(100% - 60px);  /* Adjusted for larger last circle */
+    background-color: #e0e0e0;
+  }
+
+  .progress-item {
+    position: relative;
+    padding-left: 80px;  /* Increased to accommodate larger circles */
+    margin-bottom: 30px;  /* Increased for better spacing */
+  }
+
+  .progress-circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;  /* Increased to 60px */
+    height: 60px;  /* Increased to 60px */
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ff6347;
+  }
+
+  .progress-item.active .progress-circle {
+    background-color: #ff6347;
+    color: #ffffff;  /* Changed to white for better contrast */
+  }
+
+  .progress-content h3 {
+    margin: 0;
+    font-size: 18px;  /* Slightly increased */
+    color: #333;
+  }
+
+  .progress-content p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .progress-item.active .progress-content h3 {
+    color: #ff6347;  /* Changed to match the new color scheme */
+  }
+
+  .progress-item.last {
+    margin-bottom: 0;
+  }
+
+  .progress-item:last-child .progress-circle {
+    border-color: #ff6347;
+    /* background-color: #ff6347;   */
+  }
+
+  /* Tracking Icons */
+  .trackIcon {
+    height: 40px;
+    width: 40px;
+  }

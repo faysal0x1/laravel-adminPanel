@@ -30,9 +30,6 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-
-                            {{-- print data in json --}}
-
                             @foreach ($roles as $role)
                                 <tr>
                                     <td class="td text-sm leading-5 text-gray-900">

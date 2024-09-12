@@ -5,6 +5,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!--favicon-->
     <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
@@ -18,15 +21,19 @@
     <link href="{{ asset('backend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/icons.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <!-- Theme Style CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/dark-theme.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('backend/css/semi-dark.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/css/header-colors.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/css/custom.css') }}" />
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>
         @yield('title')
     </title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    {{-- Css Link --}}
-    {{--
-    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet"> --}}
     @stack('style')
 
 
@@ -77,59 +84,75 @@
 
     <script src="{{ asset('backend/js/app.js') }}"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js">
-    </script>
-
-    <script>
-        // Toastr options
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-
-        // Display toasts
-        @if(Session::has('toast_success'))
-            toastr.success("{{ Session::get('toast_success') }}");
-        @endif
-
-        @if(Session::has('toast_error'))
-            toastr.error("{{ Session::get('toast_error') }}");
-        @endif
-
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                toastr.error("{{ $error }}");
-            @endforeach
-        @endif
-
-        @if(Session::has('error_details'))
-            console.error("Error details:", {!! json_encode(Session::get('error_details')) !!});
-        @endif
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="{{ asset('backend/js/custom.js') }}"></script>
-    <script src="{{ asset('backend/js/toggleStatus.js') }}"></script>
-
-
-
 
     @stack('script')
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- <script src="{{ asset('backend/js/custom.js') }}"></script> --}}
 
 
+    <script>
+        $(".toggleswitch-checkbox").change(function() {
+            var model = $(this).data("model");
+            var id = $(this).data("id");
+            var state = $(this).prop("checked");
+            var checkbox = $(this);
+
+            console.log(model, id, state);
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to change the status!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, change it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .get(`/toggle-status/${model}/${id}`)
+                        .then((response) => {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Updated!",
+                                text: "The status has been updated.",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                toast: true,
+                                position: "top-end",
+                            });
+                        })
+                        .catch((error) => {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error!",
+                                text: "There was an issue updating the status.",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                toast: true,
+                                position: "top-end",
+                            });
+                            checkbox.prop("checked", !state); // Revert the toggle switch
+                        });
+                } else {
+                    checkbox.prop("checked", !state); // Revert the toggle switch
+                }
+            });
+        });
+    </script>
+
+
+    {{-- Toastify JS --}}
+
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script> --}}
+
+
+
+
+
+
+    <script src="{{ asset('backend/js/custom.js') }}"></script>
 </body>
 
 </html>

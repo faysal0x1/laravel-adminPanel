@@ -1,0 +1,54 @@
+.navbar {
+    height: 90px;
+}
+
+
+.icon {
+    height: 45px;
+    width: 50px;
+}
+
+/* Banner */
+.banner {
+    
+    background: #FDD585;
+    height: 700px;
+}
+
+
+
+.banner-svg {
+    height: 500px;
+
+}
+
+
+@media  (max-width: 575px) { 
+
+    .banner {
+        background: #FDD585;
+        width: auto;
+    }
+
+    .banner-container{
+        flex-direction: column-reverse;
+    }
+
+    .banner-text {
+        margin-top: 31px;
+        margin-bottom: 18px;
+        /* padding: 33px 10px 16px 27px; */
+        padding: 0 35px;
+    }
+    .banner-svg {
+        height: 222px;
+        /* width: 150px; */
+        width: fit-content;
+    } 
+ }
+
+
+ @media (min-width:576px) and (max-width: 768px){
+
+    
+ }

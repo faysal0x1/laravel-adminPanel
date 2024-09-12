@@ -3,16 +3,10 @@
 @section('title', 'Add Posts')
 
 @section('content')
-
-
     <x-breadcumb title="Add Posts" />
 
-    <!-- Tables start -->
-    <!-- Row start -->
     <div class="row">
         <div class="col-sm-12">
-
-
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-header-text">Add New Posts</h5>
@@ -39,17 +33,22 @@
                                         placeholder="Name">
                                 </div>
                             </div>
-                            <div class="col-md-7">
-                                <label for="photo" class="col-xs-2 col-form-label form-control-label">Photo</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="file" id="photo" name="photo">
+
+                            <div class="col-md-6 mt-3">
+                                <div class="form-group">
+                                    <label for="image">Photo</label>
+                                    <input type="file" id="photo" name="photo" class="form-control" id="image">
+                                    <br>
+                                    <img id="showImage" class="form-check-input" src="{{ url('upload/no_image.jpg') }}"
+                                        alt="Admin" style="width:100px; height: 100px;">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <label for="desc" class="col-xs-2 col-form-label form-control-label">Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="desc" name="desc" rows="5"></textarea>
+                                    <div id="editor" style="height: 300px;"></div>
+                                    <textarea class="form-control" id="desc" name="desc" style="display:none;"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -62,4 +61,14 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
+
+@push('script')
+    <script src="{{ asset('backend/js/quill.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            setupQuillEditor('editor', 'desc')
+        });
+    </script>
+@endpush

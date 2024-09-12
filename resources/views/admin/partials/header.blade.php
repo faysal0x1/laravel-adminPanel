@@ -19,8 +19,8 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link " href="{{ url('/') }}" target="_blank">
-                            <i class="fadeIn animated bx bx-world"></i>
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"> <i class='bx bx-category'></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="row row-cols-3 g-3 p-3">
@@ -125,8 +125,8 @@
                                         <div class="notify bg-light-info text-info"><i class="bx bx-home-circle"></i>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">New Product Approved <span class="msg-time float-end">2
-                                                    hrs ago</span></h6>
+                                            <h6 class="msg-name">New Product Approved <span
+                                                    class="msg-time float-end">2 hrs ago</span></h6>
                                             <p class="msg-info">Your new product has approved</p>
                                         </div>
                                     </div>
@@ -149,8 +149,8 @@
                                                 class='bx bx-check-square'></i>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5
-                                                    hrs
+                                            <h6 class="msg-name">Your item is shipped <span
+                                                    class="msg-time float-end">5 hrs
                                                     ago</span></h6>
                                             <p class="msg-info">Successfully shipped your item</p>
                                         </div>
@@ -158,7 +158,8 @@
                                 </a>
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
-                                        <div class="notify bg-light-primary text-primary"><i class='bx bx-user-pin'></i>
+                                        <div class="notify bg-light-primary text-primary"><i
+                                                class='bx bx-user-pin'></i>
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
@@ -333,7 +334,7 @@
                                 </a>
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
-                                        <div class="user-online">
+                                        {{-- <div class="user-online">
                                             <img src="{{ asset('backend/images/avatars/avatar-11.png') }}"
                                                 class="msg-avatar" alt="user avatar">
                                         </div>
@@ -341,7 +342,7 @@
                                             <h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
                                                     ago</span></h6>
                                             <p class="msg-info">All the Lorem Ipsum generators</p>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </a>
                             </div>
@@ -360,18 +361,16 @@
 
 
                     <div class="user-info ps-3">
-                        <p class="user-name mb-0">
-                            {{-- {{ auth()->user()->name }} --}}
+                        <p class="user-name mb-0">{{ auth()->user()->name }}</p>
 
-                        </p>
-                        <p class="designattion mb-0">Web Designer</p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i
                                 class="bx bx-user"></i><span>Profile</span></a>
                     </li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
+                    <li><a class="dropdown-item" href="javascript:;"><i
+                                class="bx bx-cog"></i><span>Settings</span></a>
                     </li>
                     <li><a class="dropdown-item" href="javascript:;"><i
                                 class='bx bx-home-circle'></i><span>Dashboard</span></a>
