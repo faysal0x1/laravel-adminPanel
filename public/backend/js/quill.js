@@ -84,3 +84,6 @@ function setupQuillEditor(editorId, descId) {
             console.error("Error setting up Quill:", error);
         });
 }
+
+
+setupQuillEditor('editor', 'desc')
