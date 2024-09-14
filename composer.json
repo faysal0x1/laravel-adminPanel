@@ -7,14 +7,7 @@
         "framework"
     ],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/faysal0x1/laravel-adminPanel"
-        }
-    ],
     "require": {
-        "faysal0x1/laravel-adminpanel": "main",
         "php": "^8.2",
         "intervention/image": "2.7",
         "laravel/breeze": "^2.1",
